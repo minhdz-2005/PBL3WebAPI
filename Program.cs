@@ -14,6 +14,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<PBL3WebAPIContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("PBL3Database"))
 );
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
 
 
 var app = builder.Build();
@@ -24,6 +33,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 

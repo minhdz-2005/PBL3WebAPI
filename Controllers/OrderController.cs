@@ -6,25 +6,25 @@ using PBL3WebAPI.Data;
 namespace PBL3WebAPI.Controllers;
 [ApiController]
 [Route("api/[controller]")]
-public class AccountController : ControllerBase
+public class OrderController : ControllerBase
 {
     private readonly PBL3WebAPIContext _context;
 
-    public AccountController (PBL3WebAPIContext context)
+    public OrderController(PBL3WebAPIContext context)
     {
         _context = context;
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Account>>> GetAllAccount()
+    public async Task<ActionResult<IEnumerable<Order>>> GetAllOrder()
     {
-        return await _context.Account.ToListAsync();
+        return await _context.Order.ToListAsync();
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Account>> GetAccount(int id)
+    public async Task<ActionResult<Order>> GetOrder(int id)
     {
-        var a = await _context.Account.FindAsync(id);
+        var a = await _context.Order.FindAsync(id);
 
         if (a == null)
         {
@@ -35,16 +35,16 @@ public class AccountController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Account>> CreateAccount(Account a)
+    public async Task<ActionResult<Order>> CreateOrder(Order a)
     {
-        _context.Account.Add(a);
+        _context.Order.Add(a);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetAccount), new { id = a.Id }, a);
+        return CreatedAtAction(nameof(GetOrder), new { id = a.Id }, a);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAccount(int id, Account a)
+    public async Task<IActionResult> UpdateOrder(int id, Order a)
     {
         if (id != a.Id)
         {
@@ -59,7 +59,7 @@ public class AccountController : ControllerBase
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!AccountExists(id))
+            if (!OrderExists(id))
             {
                 return NotFound();
             }
@@ -73,22 +73,22 @@ public class AccountController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteAccount(int id)
+    public async Task<IActionResult> DeleteOrder(int id)
     {
-        var existing = await _context.Account.FindAsync(id);
+        var existing = await _context.Order.FindAsync(id);
         if (existing == null)
         {
             return NotFound();
         }
 
-        _context.Account.Remove(existing);
+        _context.Order.Remove(existing);
         await _context.SaveChangesAsync();
 
         return NoContent();
     }
 
-    private bool AccountExists(int id)
+    private bool OrderExists(int id)
     {
-        return _context.Account.Any(e => e.Id == id);
+        return _context.Order.Any(e => e.Id == id);
     }
 }
