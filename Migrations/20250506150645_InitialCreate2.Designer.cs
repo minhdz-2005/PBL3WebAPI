@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PBL3WebAPI.Data;
 
@@ -11,9 +12,11 @@ using PBL3WebAPI.Data;
 namespace PBL3WebAPI.Migrations
 {
     [DbContext(typeof(PBL3WebAPIContext))]
-    partial class PBL3WebAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20250506150645_InitialCreate2")]
+    partial class InitialCreate2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,7 +53,7 @@ namespace PBL3WebAPI.Migrations
                     b.HasIndex("Username")
                         .IsUnique();
 
-                    b.ToTable("Account", (string)null);
+                    b.ToTable("Account");
                 });
 
             modelBuilder.Entity("PBL3WebAPI.Models.Customer", b =>
@@ -80,7 +83,7 @@ namespace PBL3WebAPI.Migrations
                     b.HasIndex("PhoneNumber")
                         .IsUnique();
 
-                    b.ToTable("Customer", (string)null);
+                    b.ToTable("Customer");
                 });
 
             modelBuilder.Entity("PBL3WebAPI.Models.Order", b =>
@@ -120,7 +123,7 @@ namespace PBL3WebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Order", (string)null);
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("PBL3WebAPI.Models.OrderDetail", b =>
@@ -143,7 +146,7 @@ namespace PBL3WebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("OrderDetail", (string)null);
+                    b.ToTable("OrderDetail");
                 });
 
             modelBuilder.Entity("PBL3WebAPI.Models.Product", b =>
@@ -172,7 +175,7 @@ namespace PBL3WebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Product", (string)null);
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("PBL3WebAPI.Models.Shift", b =>
@@ -191,7 +194,7 @@ namespace PBL3WebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shift", (string)null);
+                    b.ToTable("Shift");
                 });
 
             modelBuilder.Entity("PBL3WebAPI.Models.ShiftStaffs", b =>
@@ -210,7 +213,7 @@ namespace PBL3WebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ShiftStaffs", (string)null);
+                    b.ToTable("ShiftStaffs");
                 });
 
             modelBuilder.Entity("PBL3WebAPI.Models.Staff", b =>
@@ -249,7 +252,7 @@ namespace PBL3WebAPI.Migrations
                     b.HasIndex("PhoneNumber")
                         .IsUnique();
 
-                    b.ToTable("Staff", (string)null);
+                    b.ToTable("Staff");
                 });
 
             modelBuilder.Entity("PBL3WebAPI.Models.Voucher", b =>
@@ -280,7 +283,7 @@ namespace PBL3WebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Voucher", (string)null);
+                    b.ToTable("Voucher");
                 });
 #pragma warning restore 612, 618
         }
