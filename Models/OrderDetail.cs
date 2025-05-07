@@ -6,6 +6,8 @@ namespace PBL3WebAPI.Models;
 public class OrderDetail {
     [Key]
     public int Id { get; set; }
+    [ForeignKey("Order")]
+     public int OrderId { get; set; }
     [ForeignKey("Product")]
     public int ProductId { get; set; }
     [Required]
