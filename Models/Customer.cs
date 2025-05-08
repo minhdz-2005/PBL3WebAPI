@@ -10,12 +10,9 @@ public class Customer {
     [Required]
     [MaxLength(20)]
     public string PhoneNumber { get; set; } = string.Empty;
-    [Required]
-    public string Username { get; set; } = string.Empty;
     public Customer () {}
-    public Customer (string name, string phoneNumber, string username) {
+    public Customer (string name, string phoneNumber) {
         Name = name;
         PhoneNumber = phoneNumber;
-        Username = username;
     }
 }
