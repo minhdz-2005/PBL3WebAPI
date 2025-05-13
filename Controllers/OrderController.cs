@@ -21,6 +21,7 @@ public class OrderController : ControllerBase
         return await _context.Order.ToListAsync();
     }
 
+
     [HttpGet("{id}")]
     public async Task<ActionResult<Order>> GetOrder(int id)
     {
@@ -33,6 +34,16 @@ public class OrderController : ControllerBase
 
         return a;
     }
+    [HttpGet("Date/{date}")]
+    public async Task<IActionResult> GetOrdersByDate(DateTime date)
+    {
+        var orders = await _context.Order
+            .Where(o => o.TimeAndDate.Date == date.Date)
+            .ToListAsync();
+
+        return Ok(orders);
+    }
+
 
     [HttpPost]
     public async Task<ActionResult<Order>> CreateOrder(Order a)

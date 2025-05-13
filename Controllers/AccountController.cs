@@ -33,6 +33,16 @@ public class AccountController : ControllerBase
 
         return a;
     }
+    [HttpGet("Username/{username}")]
+    public async Task<ActionResult<Account>> GetAccountByUsername(string username) {
+        var a = await _context.Account.FirstOrDefaultAsync(x => x.Username == username);
+
+        if(a == null) {
+            return NotFound();
+        }
+
+        return a;
+    }
 
     [HttpPost]
     public async Task<ActionResult<Account>> CreateAccount(Account a)

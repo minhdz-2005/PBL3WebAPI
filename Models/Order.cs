@@ -8,8 +8,7 @@ public class Order {
     public int Id { get; set; }
     [ForeignKey("Staff")]
     public int StaffId { get; set; }
-    [ForeignKey("Customer")]
-    public int CustomerId { get; set; }
+
     [ForeignKey("Shift")]
     public int ShiftId { get; set; }
     [ForeignKey("Voucher")]
@@ -24,9 +23,8 @@ public class Order {
     public bool Status { get; set; }
 
     public Order () {}
-    public Order (int staffId, int customerId, int shiftId, int voucherId, decimal amount, decimal discountValue, bool status) {
+    public Order (int staffId, int shiftId, int voucherId, decimal amount, decimal discountValue, bool status) {
         StaffId = staffId;
-        CustomerId = customerId;
         ShiftId = shiftId;
         VoucherId = voucherId;
         Amount = amount;
