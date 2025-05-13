@@ -6,7 +6,6 @@ public class PBL3WebAPIContext : DbContext {
     public PBL3WebAPIContext(DbContextOptions<PBL3WebAPIContext> option) : base (option) { }
 
     public DbSet<Account> Account { get; set; }
-    public DbSet<Customer> Customer { get; set; }
     public DbSet<Order> Order { get; set; }
     public DbSet<OrderDetail> OrderDetail { get; set; }
     public DbSet<Product> Product { get; set; }
@@ -17,7 +16,6 @@ public class PBL3WebAPIContext : DbContext {
 
     protected override void OnModelCreating (ModelBuilder model) {
         model.Entity<Account>().HasIndex(a => a.Username).IsUnique();
-        model.Entity<Customer>().HasIndex(a => a.PhoneNumber).IsUnique();
         model.Entity<Staff>().HasIndex(a => a.PhoneNumber).IsUnique();
     }
 }

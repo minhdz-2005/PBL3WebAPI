@@ -14,11 +14,13 @@ public class OrderDetail {
     public int Quantity { get; set; }
     [Precision(18,2)]
     public decimal TotalPrice { get; set; }
+    public string Note { get; set; } = string.Empty;
 
     public OrderDetail () {}
-    public OrderDetail (int productId, int quantity, decimal totalPrice) {
+    public OrderDetail (int productId, int quantity, decimal totalPrice, string note) {
         ProductId = productId;
         Quantity = quantity;
         TotalPrice = totalPrice;
+        Note = note;
     }
 }
