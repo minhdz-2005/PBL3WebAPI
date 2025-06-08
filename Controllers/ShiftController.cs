@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PBL3WebAPI.Models;
 using PBL3WebAPI.Data;
+using System.Collections;
 
 namespace PBL3WebAPI.Controllers;
 [ApiController]
@@ -32,6 +33,17 @@ public class ShiftController : ControllerBase
         }
 
         return a;
+    }
+    [HttpGet("Date/{date}")]
+    public async Task<ActionResult<IEnumerable<Shift>>> GetShiftByDate(DateTime date)
+    {
+        var list = await _context.Shift
+        .Where(x => x.StartTime.Date == date.Date)
+        .ToListAsync();
+
+        if (list == null) return NotFound();
+
+        return Ok(list);
     }
 
     [HttpPost]

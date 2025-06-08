@@ -33,6 +33,27 @@ public class ShiftStaffsController : ControllerBase
 
         return a;
     }
+    [HttpGet("idShift/{id}")]
+    public async Task<ActionResult<IEnumerable<ShiftStaffs>>> GetByIdShift(int id)
+    {
+        var list = await _context.ShiftStaffs
+        .Where(x => x.ShiftId == id)
+        .ToListAsync();
+
+        if (list == null) return NotFound();
+
+        return Ok(list);
+    }
+    [HttpGet("idShiftAndIdStaff/{idShift}/{idStaff}")]
+    public async Task<ActionResult<ShiftStaffs>> GetByIdShiftAndIdStaff(int idShift, int idStaff)
+    {
+        var shiftStaffs = await _context.ShiftStaffs
+        .FirstOrDefaultAsync(x => x.ShiftId == idShift && x.StaffId == idStaff);
+
+        if (shiftStaffs == null) return NotFound();
+
+        return shiftStaffs;
+    }
 
     [HttpPost]
     public async Task<ActionResult<ShiftStaffs>> CreateShiftStaffs(ShiftStaffs a)

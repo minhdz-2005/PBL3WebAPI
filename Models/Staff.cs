@@ -6,8 +6,6 @@ namespace PBL3WebAPI.Models;
 public class Staff {
     [Key]
     public int Id { get; set; }
-    [Required]
-    [ForeignKey("Account")]
     public string Username { get; set; } = string.Empty;
     [Required]
     [MaxLength(50)]
